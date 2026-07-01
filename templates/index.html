@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COOKED! - Intelligent Cooking Companion</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <i class="fas fa-hat-chef logo-icon"></i>
+            <h1>COOKED!</h1>
+            <h2>Your Intelligent Cooking Companion</h2>
+            <p>Personalized recipes tailored to your pantry, diet, and skills.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="form-section">
+            <form id="recipe-form">
+                <div class="grid-2-col">
+                    <div class="input-group">
+                        <label><i class="fas fa-fire"></i> Cooking Skill</label>
+                        <select id="skill_level" required>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Professional">Professional</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-user"></i> Age</label>
+                        <select id="age">
+                            <option value="Adult">Adult</option>
+                            <option value="Kid">Kid</option>
+                            <option value="Senior">Senior</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-leaf"></i> Diet Preference</label>
+                        <select id="diet">
+                            <option value="None">None</option>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Vegan">Vegan</option>
+                            <option value="Keto">Keto</option>
+                            <option value="Paleo">Paleo</option>
+                            <option value="High Protein">High Protein</option>
+                            <option value="Low Carb">Low Carb</option>
+                            <option value="Gluten-Free">Gluten-Free</option>
+                            <option value="Diabetic Friendly">Diabetic Friendly</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-heartbeat"></i> Health Goal</label>
+                        <select id="health_goal">
+                            <option value="None">None</option>
+                            <option value="Weight Loss">Weight Loss</option>
+                            <option value="Weight Gain">Weight Gain</option>
+                            <option value="Heart Healthy">Heart Healthy</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-globe"></i> Cuisine</label>
+                        <select id="cuisine">
+                            <option value="Any">Any / Surprise Me</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Italian">Italian</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Japanese">Japanese</option>
+                            <option value="Mediterranean">Mediterranean</option>
+                            <option value="Fusion">Fusion Cuisine</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-utensils"></i> Taste Preference</label>
+                        <select id="taste_preference">
+                            <option value="Balanced">Balanced</option>
+                            <option value="Sweet">Sweet</option>
+                            <option value="Spicy">Spicy</option>
+                            <option value="Mild">Mild</option>
+                            <option value="Smoky">Smoky</option>
+                            <option value="Tangy">Tangy</option>
+                            <option value="Extra Garlic">Extra Garlic</option>
+                            <option value="Cheesy">Cheesy</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-pepper-hot"></i> Spice Level</label>
+                        <select id="spice_level">
+                            <option value="None">None</option>
+                            <option value="Mild">Mild</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Hot">Hot</option>
+                            <option value="Extra Hot">Extra Hot</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-users"></i> Servings</label>
+                        <input type="number" id="servings" min="1" value="2" required>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-wallet"></i> Budget</label>
+                        <select id="budget">
+                            <option value="Low">Low / Budget</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High / Premium</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-clock"></i> Max Cooking Time</label>
+                        <select id="cooking_time">
+                            <option value="10 minutes">10 minutes</option>
+                            <option value="20 minutes">20 minutes</option>
+                            <option value="30 minutes" selected>30 minutes</option>
+                            <option value="60 minutes">60 minutes</option>
+                            <option value="Any">Any</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group full-width">
+                    <label><i class="fas fa-carrot"></i> Available Ingredients</label>
+                    <textarea id="ingredients" placeholder="e.g., chicken, rice, tomatoes, onion..."></textarea>
+                </div>
+                <div class="input-group full-width">
+                    <label><i class="fas fa-ban"></i> Ingredients to Avoid</label>
+                    <input type="text" id="avoid_ingredients" placeholder="e.g., cilantro, mushrooms...">
+                </div>
+                <div class="input-group full-width">
+                    <label><i class="fas fa-exclamation-triangle"></i> Food Allergies</label>
+                    <input type="text" id="allergies" placeholder="e.g., peanuts, shellfish, dairy...">
+                </div>
+
+                <div class="button-group">
+                    <button type="button" id="btn-random" class="btn btn-secondary">Random Recipe</button>
+                    <button type="button" id="btn-clear" class="btn btn-danger">Clear Form</button>
+                    <button type="submit" id="btn-generate" class="btn btn-primary">Generate Recipe</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="loading-section" class="hidden">
+            <div class="spinner"></div>
+            <h3>ChefAI is preparing your recipe...</h3>
+        </section>
+
+        <section id="error-section" class="hidden">
+            <div class="error-card">
+                <i class="fas fa-exclamation-circle"></i>
+                <p id="error-message">Something went wrong.</p>
+            </div>
+        </section>
+
+        <section id="recipe-display" class="hidden">
+            <div class="recipe-card" id="recipe-content">
+                </div>
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
